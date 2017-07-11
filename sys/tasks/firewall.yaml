@@ -1,0 +1,6 @@
+---
+- name: copy iptables 
+  copy: src=iptables dest=/etc/sysconfig/iptables mode=0600 owner=root group=root
+
+- name: load policy
+  shell: iptables-restore < /etc/sysconfig/iptables

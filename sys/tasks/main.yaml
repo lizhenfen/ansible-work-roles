@@ -1,0 +1,9 @@
+---
+- include: package.yaml 
+- include: ssh.yaml
+- include: zabbix.yaml
+- include: firewall.yaml
+- include: kernel.yaml
+- include: services.yaml
+- include: user.yaml
+- include: update.yaml

@@ -1,0 +1,9 @@
+---
+- name: acknowledge env dir exists
+  file: path=/data/env mode=0755 owner=root group=root state=directory
+
+- name: untar
+  unarchive: src=java/jdk-8u91-linux-x64.tar.gz dest=/data/env/ copy=true owner=root group=app 
+
+- name: ln 
+  file: src=/data/env/jdk1.8.0_91  dest=/data/env/jdk state=link

@@ -1,0 +1,8 @@
+---
+- name: sync the limits.conf
+  template: src=kernel/limits.conf dest=/etc/security/ mode=0644 owner=root group=root
+  
+- name: sync the kernel
+  template: src=kernel/sysctl.conf dest=/etc/sysctl.conf mode=0644 owner=root group=root
+  
+ 

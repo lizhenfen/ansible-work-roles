@@ -1,0 +1,4 @@
+---
+- name: app run group
+  group: gid=600 name=app state=present
+  

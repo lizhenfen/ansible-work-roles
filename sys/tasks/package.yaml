@@ -1,0 +1,21 @@
+---
+- name: install libselinux-python\
+  yum: name=libselinux-python state=installed
+
+- name: install aliyun to localhost and epel
+  template: src={{ item.src }} dest={{ item.dest }} mode=0755 owner=root group=root
+  with_items:
+    - {"src": 'CentOS-6.repo', "dest": '/etc/yum.repos.d/CentOS-Base.repo'}
+    - {"src": 'epel-6.repo', "dest": '/etc/yum.repos.d/epel-6.repo'}
+    - {"src": 'inittab', "dest": '/etc/inittab'}
+    - {"src": 'config', "dest": '/etc/selinux/config'}
+    - {"src": 'network', "dest": '/etc/sysconfig/network'}
+    - {"src": 'ifcfg-eth0', "dest": '/etc/sysconfig/network-scripts/ifcfg-eth0'}
+  when: ansible_distribution_major_version == '6'
+
+
+- name: rm network ruls if install system from template
+  file: path=/etc/udev/rules.d/70-persistent-net.rules state=absent
+  
+  notify:
+    - restart network

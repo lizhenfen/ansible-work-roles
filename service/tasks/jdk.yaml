@@ -1,0 +1,18 @@
+---
+- name: jdk user
+  user: name=java uid=501 group=app shell=/bin/bash
+
+- name: modify app home permission
+  file: name=/home/java state=directory mode=0770 owner=java group=app
+
+- name: some commands
+  file: src={{ item.src }} dest={{ item.dest }} state=link
+  with_items:
+    - {src: /bin/ls, dest: /usr/bin/ls}
+    - {src: /bin/sleep, dest: /usr/bin/sleep}
+
+- name: java env 1
+  copy: src=bash_profile dest=/home/java/.bash_profile owner=java group=app mode=0644
+
+- name: java env 2
+  copy: src=bashrc dest=/home/java/.bashrc owner=java group=app mode=0644

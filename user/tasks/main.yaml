@@ -1,0 +1,13 @@
+---
+- name: app group
+  group: name=app gid=600 state=present
+
+- name: admin user
+  user: name=sysuser shell=/bin/bash uid=601 group=root groups=app update_password=on_create password="$6$0f6eLH4zBlFO/mWb$f3D6P0V7GXLo./ddyExlnubox1lEE2t3EwDtiDpLtNx16v3RAocbWRH005gjih1jupnvxeA9TRINo6WNprk4S0"
+
+
+- name: common user
+  user: name=app shell=/bin/bash uid=602 group=app update_password=on_create password="$6$nlXni1l2wHjQPwXc$kL5u0xIV7pffDrsgvphPwOHHn/8sIhrdgXkHXA8Kj2/Cmj1P9eYGud1dobmRTLPD.MJRt.zAC7nIjTdfTZgfC/"
+
+- name: sudo
+  copy: src=sudoers dest=/etc/sudoers mode=0440 owner=root group=root
