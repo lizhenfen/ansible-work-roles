@@ -1,0 +1,12 @@
+---
+- name: set linux kernel for core.somaxconn
+  sysctl: name="net.core.somaxconn" value=1024 sysctl_file=/etc/sysctl.conf reload=yes
+  
+- name: set linux kernel for net.ipv4.tcp_max_syn_backlog
+  sysctl: name="net.ipv4.tcp_max_syn_backlog" value=1024 sysctl_file=/etc/sysctl.conf reload=yes
+  
+- name: set linux kernel for memory usage
+  sysctl: name="vm.overcommit_memory" value=1 sysctl_file=/etc/sysctl.conf reload=yes
+  
+- name: set linux kernel for linux hugepage
+  shell: echo never > /sys/kernel/mm/transparent_hugepage/enabled
