@@ -7,5 +7,5 @@
   roles:
     - {'role': 'sys', tags: ['sys-init']}
     - {'role': 'base', tags: ['base']}
-    - {'role': 'service', tags: ['service']}
+    - {'role': 'app', tags: ['service']}
     - {'role': 'user', tags: ['user']}
