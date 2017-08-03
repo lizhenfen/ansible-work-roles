@@ -9,3 +9,4 @@
     - {'role': 'base', tags: ['base']}
     - {'role': 'app', tags: ['service']}
     - {'role': 'user', tags: ['user']}
+    - {'role': 'services', tags: ['nginx']}

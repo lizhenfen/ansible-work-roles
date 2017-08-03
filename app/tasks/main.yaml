@@ -1,2 +1,2 @@
 ---
-- include: jdk.yaml
+- include: jdk.yaml tags=jdk

@@ -1,0 +1,32 @@
+---
+- name: install pcre
+  yum: name=pcre-devel state=latest
+  
+- name: confirm data dir exists
+  file: path=/data state=directory mode=0755
+
+- name: confirm nginx user exists
+  user: name=nginx shell=/sbin/nologin 
+  
+- name: copy nginx.tar.gz application
+  copy: src=nginx/nginx.tar.gz dest=/data/
+  
+- name: untar nginx.tar.gz
+  unarchive: src=nginx/nginx.tar.gz dest=/data/
+  
+- name: sync needs software
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+    - rsync
+    - supervisor
+    - inotify-tools
+  
+- name: confirm scripts dir
+  file: path=/data/scripts/sync state=directory
+  
+- copy: src=nginx/config/supervisord.conf  dest=/etc/supervisord.conf
+
+- name: copy sync scripts
+  copy: src=nginx/scripts/ dest=/data/scripts/sync
+
